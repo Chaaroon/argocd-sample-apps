@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: say-hi-app-config
+data:
+  SayHiConsoleApp.dll.config: |
+    <?xml version="1.0" encoding="utf-8" ?>
+    <configuration>
+      <appSettings>
+        <add key="words" value="Hello from ConfigMap!" />
+      </appSettings>
+    </configuration>

@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sayhi-consoleapp-cronjob
+spec:
+  schedule: "* * * * *"  # every minute
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: sayhi-consoleapp
+              image: aaroonyi/sayhiconsoleapp:dev
+              command: ["dotnet", "SayHiConsoleApp.dll"]
+              volumeMounts:
+                - name: config-volume
+                  mountPath: /app/SayHiConsoleApp.dll.config
+                  subPath: SayHiConsoleApp.dll.config
+          restartPolicy: Never
+          volumes:
+            - name: config-volume
+              configMap:
+                name: say-hi-app-config
+      backoffLimit: 1
