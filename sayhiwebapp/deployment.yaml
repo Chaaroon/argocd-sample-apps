@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sayhiwebapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sayhiwebapi
+  template:
+    metadata:
+      labels:
+        app: sayhiwebapi
+    spec:
+      containers:
+        - name: sayhiwebapi
+          image: aaroonyi/sayhiwebapi:v1.0
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/appsettings.json
+              subPath: appsettings.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: sayhiwebapi-config

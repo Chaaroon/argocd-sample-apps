@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sayhiwebapi-config
+data:
+  appsettings.json: |
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "AllowedHosts": "*",
+      "greeting": "Hello from ConfigMap in sayhiwebapi!"
+    }
+
